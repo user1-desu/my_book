@@ -2,9 +2,10 @@
 
 <h1>Listing Books</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
+      <th>Image url</th>
       <th>Title</th>
       <th>Author</th>
       <th>Price</th>
@@ -18,11 +19,13 @@
   <tbody>
     <% @books.each do |book| %>
       <tr>
+        <td><img src="<%= book.image_url %>" alt=""  class="img-responsive"></td>
         <td><%= book.title %></td>
         <td><%= book.author %></td>
-        <td><%= book.price %></td>
+<% if false %>  <td><%= book.price %></td> <% end %>
+        <td><%= number_to_currency(book.price, unit: '¥', precision: 0) %></td>
         <td><%= book.publisher %></td>
-        <td><%= book.date_of_publication %></td>
+        <td><%= book.date_of_publication.strftime('%Y/%m/%d') %></td>
         <td><%= book.isbn %></td>
         <td><%= link_to 'Show', book %></td>
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
